@@ -1555,7 +1555,7 @@ static void sendNetFlowDatagram_spoof(SFSample *sample, NFFlowPkt *pkt)
   sfConfig.sendPkt.ip.tot_len = htons(packetLen);
   sfConfig.sendPkt.udp.uh_ulen = htons(packetLen - sizeof(struct myiphdr));
   /* set the source address to the source address of the input event */
-  sfConfig.sendPkt.ip.saddr = sample->agent_addr.address.ip_v4.addr;
+  sfConfig.sendPkt.ip.saddr = sample->agent_addr.address.ip_v6.addr;
   /* IP header checksum */
   sfConfig.sendPkt.ip.check = in_checksum((uint16_t *)&sfConfig.sendPkt.ip, sizeof(struct myiphdr));
   if (sfConfig.sendPkt.ip.check == 0) sfConfig.sendPkt.ip.check = 0xffff;
